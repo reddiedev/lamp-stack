@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>LAMP Stack | reddie</title>
+        <meta name="description" content="ECE 168 Lab 1 Exercise by Sean Red Mendoza">
+        <link rel="shortcut icon" type="image/icon" href="/public/favicon.ico" />
+        <link rel="icon" type="image/icon" href="/public/favicon.ico" />
+
+        <!-- Tailwind CSS -->
+        <script src="/js/tailwind.min.js"></script>
+        <style type="text/tailwindcss">
+            @tailwind base;
+            @tailwind components;
+            @tailwind utilities;
+        </style>
+        <style type="text/tailwindcss">
+            @layer components {
+                .active {
+                    @apply text-red-600;
+                  }
+                .section-group {
+                  @apply flex flex-col w-full mb-10;
+                }
+                .image {
+                  @apply rounded-lg shadow-lg w-full h-auto my-2 cursor-pointer;
+                }
+                .section-header {
+                  @apply font-bold font-mono text-xl lg:text-2xl;
+                }
+                .code {
+                  @apply rounded-lg block font-mono p-5 my-2 bg-neutral-800;
+                }
+                .inline-code {
+                  @apply font-mono font-thin bg-neutral-600 rounded px-1;
+                }
+                .pill {
+                  @apply text-sm rounded-lg text-white font-bold font-mono py-1 px-2 cursor-pointer hover:scale-[1.04];
+                }
+              }
+        </style>
+
+        <!-- Custom Javascript -->
+        <script src="/js/scroll-toc.js"></script>
+        <script type="text/javascript">
+            window.onscroll = function () {
+                const button = document.getElementById("scrollButton");
+                console.log(button);
+                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                    console.log("show");
+                    button.classList.add("fixed");
+                    button.classList.remove("hidden");
+                } else {
+                    console.log("hide");
+                    button.classList.add("hidden");
+                    button.classList.remove("fixed");
+                }
+            }
+
+        </script>
+    </head>
+
+    <body class="relative flex flex-col items-center justify-center min-h-screen p-5 space-y-5 font-sans antialiased text-white lg:p-10 scroll-smooth bg-neutral-900 lg:text-lg">
+        <a class="-mt-10 bg-transparent opacity-0" id="home"></a>
+
+        <section class="container flex flex-col max-w-xl p-2 pt-12 lg:max-w-2xl">
+            <h1 id="title" class="font-sans text-3xl font-bold text-red-600 sm:text-4xl lg:text-5xl">ECE 168 Lab Exercise 1:</h1>
+            <p class="font-sans text-2xl font-bold lg:text-4xl"> Implementing a Linux, Apache, MySQL, PHP (LAMP) stack on an Ubuntu 20.04 VM</p>
+            <div class="flex items-center justify-start pt-4 pb-2">
+                <a href="https://www.reddie.dev" class="flex items-center space-x-2 group">
+                    <img alt="reddiedev" src="/public/avatar.jpeg" class="rounded-lg w-7 h-7" />
+                    <span class="font-sans font-semibold transition-all ease-in-out text-slate-100 group-hover:text-red-600">Sean Red Mendoza</span>
+                </a>
+            </div>
+            <a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04">
+                <img alt="LAMP stack" src="/public/lampstack.png" class="w-full h-auto rounded-lg shadow-lg" />
+            </a>
+            <ul class="flex flex-wrap gap-1 mt-2">
+                <li class="bg-red-400 pill">Linux</li>
+                <li class="bg-violet-400 pill">Apache</li>
+                <li class="bg-green-400 pill">MySQL</li>
+                <li class="bg-pink-600 pill">PHP</li>
+                <li class="bg-teal-600 pill">API</li>
+                <li class="bg-orange-400 pill">HTMX</li>
+                <li class="bg-blue-400 pill">TailwindCSS</li>
+                <li class="bg-indigo-400 pill">Todolist Demo</li>
+                <li class="bg-lime-400 pill">CRUD</li>
+                <li class="bg-fuchsia-400 pill">VPN</li>
+                <li class="bg-sky-400 pill">CLI</li>
+                <li class="bg-emerald-400 pill">SSH</li>
+            </ul>
+
+
+        </section>
+        <article class="container relative flex flex-col max-w-xl p-2 font-sans lg:max-w-2xl">
+            <div class="fixed -z-10 opacity-0 lg:opacity-100 lg:z-10 w-72 top-[14rem] left-[5rem]">
+                <div class="flex flex-col w-full font-mono font-thin text-neutral-600">
+                    <a href="#summary" class="transition-all ease-linear hover:text-red-600">
+                        <h2 class="text-base ">Implementing a Linux, Apache, MySQL, PHP (LAMP) stack on an Ubuntu 20.04 VM</h2>
+                    </a>
+                    <ol class="pl-10 text-sm list-disc list-outside">
+                        <li class="list-disc"><a class="transition-all ease-linear hover:text-red-600" id="step-0-controller" href="/#step-0">Connecting to the EEE VM</a></li>
+                        <li class="list-disc"><a class="transition-all ease-linear hover:text-red-600" id="step-1-controller" href="/#step-1">Installing and Setting up Apache</a></li>
+                        <li class="list-disc"><a class="transition-all ease-linear hover:text-red-600" id="step-2-controller" href="/#step-2">Installing MySQL </a></li>
+                        <li class="list-disc"><a class="transition-all ease-linear hover:text-red-600" id="step-3-controller" href="/#step-3">Installing PHP</a></li>
+                        <li class="list-disc"><a class="transition-all ease-linear hover:text-red-600" id="step-4-controller" href="/#step-4">Creating a Virtual Host for your Website </a></li>
+                        <li class="list-disc"><a class="transition-all ease-linear hover:text-red-600" id="step-5-controller" href="/#step-5">Creating a Todolist app </a></li>
+                        <li class="list-disc"><a class="transition-all ease-linear hover:text-red-600" id="step-6-controller" href="/#step-6">Documenting my LAMP Application </a></li>
+                        <li class="list-disc"><a class="transition-all ease-linear hover:text-red-600" id="step-7-controller" href="/#step-7">Creating a Self-signed SSL Certificate to support HTTPS </a></li>
+                        <li class="list-disc"><a class="transition-all ease-linear hover:text-red-600" id="step-8-controller" href="/#step-8"> Installing Wordpress in a /blog subdirectory</a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <a aria-label="scroll to top" id="scrollButton" href="/#home" class="fixed right-[2rem] sm:right-[10rem] lg:right-[20rem] bottom-[2rem] lg:bottom-[8rem] z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 rounded-full bg-neutral-900 stroke-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l-3-3m0 0l-3 3m3-3v7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </a>
+
+            <section class="section-group" id="summary">
+                <h2 class="section-header">Summary</h2>
+                <p>
+                    The LAMP stack is a commonly-used stack of technology tools and frameworks that allows even beginner developers to create and run websites and web applications. As part of Lab Exercise 1 in ECE 168, we were tasked to implement this LAMP stack in a provided VM running Ubuntu 20.04.
+
+                    <br /><br />
+
+                    Using a guide from <a class="text-red-600" href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04">Digital Ocean</a>, I was able to implement a Todolist web application using LAMP. For simplicty, I also used <a class="text-red-600" href="https://tailwindcss.com/">TailwindCSS</a> and <a class="text-red-600" href="https://htmx.org/">HTMX</a> to build the interfaces.
+                </p>
+                <div class="flex justify-end pt-2 space-x-2">
+                    <a rel="preload" href="/blog/" class="flex items-center justify-center px-3 py-2 space-x-2 bg-red-600 rounded-lg cursor-pointer hover:text-red-600 hover:bg-transparent stroke-white ring-1 ring-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="font-bold">Wordpress</span>
+                    </a>
+                    <a rel="preload" href="/todo.html" class="flex items-center justify-center px-3 py-2 space-x-2 bg-red-600 rounded-lg cursor-pointer hover:text-red-600 hover:bg-transparent stroke-white ring-1 ring-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="font-bold">Todo app Demo</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="section-group">
+                <h2 class="section-header">Table of Contents </h2>
+                <ol class="pl-8 list-disc list-outside">
+                    <li><a class="transition-all ease-linear list-item hover:text-red-600" href="/#step-0">Step 0 — Connecting to the EEE VM</a></li>
+                    <li><a class="transition-all ease-linear list-item hover:text-red-600" href="/#step-1">Step 1 — Installing and Setting up Apache</a></li>
+                    <li><a class="transition-all ease-linear list-item hover:text-red-600" href="/#step-2">Step 2 — Installing MySQL </a></li>
+                    <li><a class="transition-all ease-linear list-item hover:text-red-600" href="/#step-3">Step 3 — Installing PHP</a></li>
+                    <li><a class="transition-all ease-linear list-item hover:text-red-600" href="/#step-4">Step 4 — Creating a Virtual Host for your Website </a></li>
+                    <li><a class="transition-all ease-linear list-item hover:text-red-600" href="/#step-5">Step 5 — Creating a Todolist app </a></li>
+                    <li><a class="transition-all ease-linear list-item hover:text-red-600" href="/#step-6">Step 6 — Documenting my LAMP Application </a></li>
+                    <li><a class="transition-all ease-linear list-item hover:text-red-600" href="/#step-7">Step 7 — Creating a Self-signed SSL Certificate to support HTTPS </a></li>
+                    <li><a class="transition-all ease-linear list-item hover:text-red-600" href="/#step-8">Step 8 — Installing Wordpress in a /blog subdirectory </a></li>
+                </ol>
+            </section>
+
+            <section class="section-group" id="step-0">
+                <h2 id="step-0" class="section-header header">Step 0 — Connecting to the EEE VM</h2>
+                <p>
+                    For simplicity, we were tasked to connect to EEE&apos;s eduroam network so that we have direct access to the hosted VMs without using a VPN connection using the <code class="font-bold">ping</code> CLI (command line interface) command below:
+                </p>
+                <code class="code">
+                    ping <span class="text-violet-400">10.158.90.45</span>
+                </code>
+                <img alt="Ping Command" src="/public/ping.png" class="image" />
+                <p>
+                    The output above shows that a connection can be established to the VM, therefore I can connect using SSH
+                </p>
+                <code class="code">
+                    ssh <span class="text-red-600">sean.red.mendoza</span>@<span class="text-violet-400">10.158.90.45</span>
+                </code>
+                <p>
+                    To make my experience a lot easier, I decided to use VSCode as my SSH client instead of using my terminal (iTerm). This gives me access to a file explorer to easily manage my files, as well as the different keyboard shortcuts, features, and extensions that VSCode offers.
+                </p>
+                <img alt="VSCode" src="/public/vscode.png" class="image" />
+
+            </section>
+
+            <section class="section-group" id="step-1">
+                <h2 id="step-1" class="section-header header">Step 1 — Installing and Setting up Apache</h2>
+                <p>
+                    From my limited understanding, since I don&apos;t use LAMP that much, Apache is a web server that accepts and handles incoming requests, similar to express (nodejs) or fastapi (python)
+                </p>
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> apt update <br />
+                    <span class="text-orange-400">sudo</span> apt install apache2 <br />
+                    <span class="text-orange-400">sudo</span> ufw app list <br />                    
+                </code>
+                <img alt="ufw app Command" src="/public/ufw-app.png" class="image" />
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> ufw allow ssh <br />
+                    <span class="text-orange-400">sudo</span> ufw allow in "Apache" <br /> <br />
+                    <span class="text-gray-500">// verify changes</span> <br />
+                    <span class="text-orange-400">sudo</span> ufw status <br />
+                </code>
+                <p>
+                    From my understanding, executing the commands above allows Apache to run within the VM&apos;s firewall, thus allowing Apache to function as a web server to serve incoming HTTP requests using port <code class="inline-code">80</code>.
+                </p>
+
+            </section>
+
+            <section class="section-group" id="step-2">
+                <h2 id="step-2" class="section-header header">Step 2 — Installing MySQL </h2>
+                <p>
+                    Next, we were tasked with setting up a relational database called MySQL. I have personally never used MySQL before since I was familiar with PostgreSQL using ORMs. However, since both are SQL-based databases, the experience should be familiar
+                </p>
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> apt install mysql-server <br />
+                    <span class="text-orange-400">sudo</span> apt install mysql-server <br />
+                    <span class="text-orange-400">sudo</span> mysql <br />                    
+                </code>
+                <p>For this project, I decided not to enable the <code class="inline-code">VALIDATE PASSWORD</code> plugin since security was not the priority of the stack</p>
+                <img alt="mysql" src="/public/mysql.png" class="image" />
+
+                <p>However, this initial setup requires that all queries be executed under root priveleges, which is not ideal for most applications under the principle of least-trust. Thus, following the guide, I created a subuser called <code class="inline-code">example_user</code> to simulate a user (or application) that is accessing the database</p>
+                <code class="code">
+                    <span class="text-lime-400">mysql></span> CREATE DATABASE example_database; <br />
+                    <span class="text-lime-400">mysql></span> CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password'; <br />
+                    <span class="text-lime-400">mysql></span> GRANT ALL ON example_database.* TO 'example_user'@'%'; <br /> <br />
+                    <span class="text-gray-500">// login with sub-user account</span> <br />
+                    mysql -u example_user -p <br />
+                </code>
+                <p>Using this user, I was able to experiment with the different basic MySQL queries (<code class="inline-code">CREATE, INSERT, SELECT, DELETE, UPDATE</code>) to interface with the database, as seen below:</p>
+                <code class="code">
+                    <span class="text-lime-400">mysql></span> CREATE TABLE example_database.todo_list ( <br />
+                        item_id INT AUTO_INCREMENT, <br />
+                        content VARCHAR(255), <br />
+                        PRIMARY KEY(item_id) <br />
+                    ); <br />
+                    <span class="text-lime-400">mysql></span> INSERT INTO example_database.todo_list (content) VALUES ("My first important item"); <br />
+                    <span class="text-lime-400">mysql></span> SELECT * FROM example_database.todo_list; <br />
+                </code>
+
+                <img alt="mysql list" src="/public/mysql-list.png" class="image" />
+                <p>With this, I was able to setup a preliminary structure for my database, which will be used later for my Todolist app</p>
+            </section>
+
+            <section class="section-group" id="step-3">
+                <h2 id="step-3" class="section-header header">Step 3 — Installing PHP </h2>
+                <p>
+                    It was my first time using PHP ever through this lab exercise. Honestly, I was hesistant with using it due to the stigma and public outcry from the language, and from using it I realized that they were right. From my experience in python and javascript, I really do prefer modern langugaes to PHP. Still, it was a learning experience and I&apos;m glad I at least got to try it once (never again though :>)
+                </p> <br />
+                <p>
+                    In the application, PHP was used as the main programming language for connecting the front-end web application to the underlying database. I also used it to generate dynamic content using API routes.
+                </p>
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> apt install php libapache2-mod-php php-mysql <br />
+                    php -v <br />              
+                </code>
+                <img alt="php" src="/public/php.png" class="image" />
+                <p>With that, PHP is now installed and ready to use in the following section</p>
+            </section>
+
+            <section class="section-group" id="step-4">
+                <h2 id="step-4" class="section-header header">Step 4 — Creating a Virtual Host for your Website </h2>
+                <p>
+                    This part seemed difficult at first since I was not familiar with the concept of Virtual Hosts but after using the guide, I was able to understand the surface-level of how it worked.
+                </p> <br />
+                <p>
+                    The main idea is creating a root directory for the website, and then setting up the configuration in order to host a website application from that root directory (and the assets and file structure herein).
+                </p>
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> mkdir /var/www/<span class="text-blue-400">your_domain</span> <br />
+                    <span class="text-orange-400">sudo</span> a2dissite 000-default <br />              
+                    <span class="text-orange-400">sudo</span> nano /etc/apache2/sites-available/<span class="text-blue-400">your_domain</span>.conf <br />              
+                </code>
+                <p>
+                    There was an unforeseen bug here because of the difference in configuration in the EEEI VMs from a standard installation of Ubuntu as shown in the DO guide. In order to set the correct group ID, I used the <strong>groups</strong> command to view the user groups in the VM and use that for setting the group
+                </p>
+                <img alt="virtual host config" src="/public/virtualhost-config.png" class="image" />
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> a2ensite <span class="text-blue-400">your_domain</span> <br />
+                    <span class="text-orange-400">sudo</span> chown -R $USER:$GROUP /var/www/<span class="text-blue-400">your_domain</span> <br />              
+                    <span class="text-orange-400">sudo</span> apache2ctl configtest <br />              
+                    <span class="text-orange-400">sudo</span> systemctl reload apache2 <br />              
+                    nano /var/www/<span class="text-blue-400">your_domain</span>/index.html <br />              
+                </code>
+                <img alt="index code" src="/public/index.png" class="image" />
+                <p>
+                    From here, the project directory was set at <code class="inline-code">/var/www/reddie.dev</code> and I was able to start working on the other aspects of the Lab Exercise by continuously adding more assets (.html and .php files)
+                </p>
+                <img alt="starting website" src="/public/start.png" class="image" />
+            </section>
+
+            <section class="section-group" id="step-5">
+                <h2 id="step-5" class="section-header header">Step 5 — Creating a Todolist app </h2>
+                <img alt="basic todo" src="/public/basic-todo.png" class="image" />
+                <p>Using the provided Todolist example in the guide, I used my knowledge in creating CRUD apps to create my own front-end version of the Todolist with support for:</p>
+                <ul class="pl-10 list-disc list-outside">
+                    <li class="list-item">adding todo items</li>
+                    <li class="list-item">deleting todo items</li>
+                    <li class="list-item">updating todo items</li>
+                </ul>
+                <p>I was used to creating these kinds of applications using a modern framework such as React so I really was not familiar with working with Apache, as well as limiting myself to not use common npm modules or javascript in general</p>
+                <img alt="todolist" src="/public/todolist.png" class="mx-auto image lg:w-96" />
+                <p>Thus, I decided to use HTMX for the different components, as it allowed me to seamlessly work with a PHP backend in serving the different HTML components. It was also my first time using HTMX so it was honestly difficult at first, trying out the different features and semantics which I am not used to due to my React-heavy background</p>
+                <img alt="htmx" src="/public/htmx.png" class="mx-auto image lg:w-96" />
+                <p>For example, the syntax above uses an HTML form in order to get the new todolist item from a user and passes that form data into an API endpoint in the PHP backend</p><br />
+                <p>The PHP backend returns an HTML snippet which is appended at the end of the todo list. Each todo item has a yellow edit button and a red delete button for intuitive usage</p>
+
+
+            </section>
+
+            <section class="section-group" id="step-6">
+                <h2 id="step-6" class="section-header header">Step 6 — Documenting my LAMP Application </h2>
+                <p>Finally, I used HTML with TailwindCSS in order to create this documentation for my LAMP application</p> <br />
+                <p>What helped me the most was using a screenshot app called Shottr which allowed me to screenshot specific windows and areas of the screen easily. Additionally, the drag-and-drop interface provided by VSCode&apos;s SSH client made uploading images very easy compared to downloading them from the CLI or through other means</p>
+                <img alt="website desktop view" src="/public/website-desktop.png" class="image" />
+                <p>Since I was not familiar with using Wordpress, I decided instead to use HTML + TailwindCSS since I was more comfortable with that, and it allows me to design the application according to how I want instead of using Wordpress&apos;s default template and plugins</p>
+                <img alt="website mobile view" src="/public/website-mobile.png" class="mx-auto image lg:w-60" />
+                <p>My favorite part of creating this website as adding a scroll to top button. I usually do this with Javascript but due to the self-imposed limitations of not using Javascript, I decided instead to use an invisible anchor tag at the top of the page, so that clicking the button will scroll the client to the top of the page</p>
+                <img alt="lighthouse results" src="/public/lighthouse.png" class="image" />
+                <p>Generating a lighthouse desktop analysis yields that the website is great in terms of performance, but is severely hindered by the fact that it is only using HTTP. Unfortunately, I do not know enough about Apache and setting up SSL certificates in order to certify the site, but it is an interesting project at another time.</p>
+            </section>
+
+            <section class="section-group" id="step-7">
+                <h2 id="step-7" class="section-header header">Step 7 — Creating a Self-signed SSL Certificate to support HTTPS </h2>
+                <p>Finally, I used HTML with TailwindCSS in order to create this documentation for my LAMP application</p>
+
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> ufw allow "Apache Full" <br />
+                    <span class="text-orange-400">sudo</span> a2enmod ssl <br />
+                    <span class="text-gray-500">// restart apache to apply changes</span> <br />
+                    <span class="text-orange-400">sudo</span> systemctl restart apache2 <br />
+                    <span class="text-orange-400">sudo</span> openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt <br />
+                </code>
+
+                <p>Following the steps in the <a class="text-red-600" href="https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04">guide</a>, I was able to generate an SSL certificate</p>
+
+                <img alt="ssl cert" src="/public/ssl-cert.png" class="image" />
+
+                <p>I then applied the configuration settings below in order to make Apache support HTTPS as well as redirect all HTTP traffic to use HTTPS instead</p>
+
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> nano /etc/apache2/sites-available/<span class="text-violet-400">10.158.90.45</span>.conf <br />
+
+                    <span class="text-gray-500">// verify and restart apache to apply changes</span> <br />
+                    <span class="text-orange-400">sudo</span> apachectl configtest
+                    <span class="text-orange-400">sudo</span> systemctl reload apache2
+                </code>
+
+                <img alt="ssl virtual host config" src="/public/ssl-host-config.png" class="image" />
+                <p>
+                    Unfortunately, since the SSL cert was only self-signed, it won&apos;t show up as "trusted" under modern browsers. This is because browsers need SSL certs to be verified by a Certificate Authority such as <a href="https://letsencrypt.org/">Let&apos;s Encrypt</a>
+                </p>
+                <img alt="ssl cert view" src="/public/cert-viewer.png" class="image" />
+
+            </section>
+
+            <section class="section-group" id="step-8">
+                <h2 id="step-8" class="section-header header">Step 8 — Installing Wordpress in a /blog subdirectory </h2>
+                <p>In order to make adding more content easier in the future (since creating HTML from scratch is not a sustainable and scalable solution - especially for multiple users), I added a Content Management System (CMS), Wordpress, to my site using this <a class="text-red-600" href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-20-04-with-a-lamp-stack">guide</a></p>
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> mysql -u root <br />
+                    <span class="text-lime-400">mysql></span> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'; <br />
+                    <span >mysql -u root -p</span> <br />
+
+                    <span class="text-lime-400">mysql></span> CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci; <br />
+                    <span class="text-lime-400">mysql></span> CREATE USER 'wordpressuser'@'%' IDENTIFIED WITH mysql_native_password BY 'password'; <br />
+                    <span class="text-lime-400">mysql></span> GRANT ALL ON wordpress.* TO 'wordpressuser'@'%'; <br />
+                    <span class="text-lime-400">mysql></span> FLUSH PRIVILEGES; <br />
+                    <span class="text-lime-400">mysql></span> EXIT; <br />
+                </code>
+                <p>First, I prepared the MySQL database server by adding a specific database for wordpress</p>
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> apt update <br />
+                    <span class="text-orange-400">sudo</span> apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip <br />
+                    <span class="text-orange-400">sudo</span> systemctl restart apache2<br />
+                </code>
+                <p>After that, I installed some php extensions which were needed by wordpress to function. Afterwards, I edited the Apache2 Virtual Host configuration to allow support for Wordpress. I spent a lot of time debugging this setup since I can't figure out why the site was not loading. Turns out, I just need to modify a portion of the virtual host config - not replacing the entire config file.</p>
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> nano /etc/apache2/sites-available/<span class="text-blue-400">your_domain</span>.conf <br />
+                </code>
+                <img alt="wordpress conf" src="/public/wordpress-conf.png" class="image" />
+                <p>After applying changes, as well as allowing the rewrite plugin, the file directory is ready for installing wordpress</p>
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> a2enmod rewrite <br />
+                    <span class="text-orange-400">sudo</span> sudo apache2ctl configtest <br />
+                    <span class="text-orange-400">sudo</span> sudo a2ensite <span class="text-blue-400">your_domain</span>.conf <br />
+                    <span class="text-orange-400">sudo</span> sudo systemctl restart apache2<br />
+                </code>
+                <p>Installing wordpress was a breeze since all of the core files are neatly available in a zipped file. Simply extracting this to the root directory installs Wordpress</p>
+                <code class="code">
+                    cd /tmp <br />
+                    curl -O https://wordpress.org/latest.tar.gz <br />
+                    tar xzvf latest.tar.gz <br />
+                    touch /tmp/wordpress/.htaccess <br />
+                    cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php <br />
+                    mkdir /tmp/wordpress/wp-content/upgrade <br />
+                    <span class="text-orange-400">sudo</span> cp -a /tmp/wordpress/. /var/www/<span class="text-blue-400">your_domain</span> <br />
+                </code>
+                <p>However, since Wordpress is a CMS, I needed to provide ownership access to the Apache2 and Wordpress Ubuntu User in order to allow WP to modify the system files. This proved problematic on my end since I had to change the root directory owner between myself and www-data in order to modify the files</p>
+                <code class="code">
+                    <span class="text-orange-400">sudo</span> chown -R www-data:www-data /var/www/<span class="text-blue-400">your_domain</span> <br />
+                    <span class="text-orange-400">sudo</span> find /var/www/<span class="text-blue-400">your_domain</span>/ -type d -exec chmod 750 {} \; <br />
+                    <span class="text-orange-400">sudo</span> find /var/www/<span class="text-blue-400">your_domain</span>/ -type f -exec chmod 640 {} \; <br />
+                </code>
+
+                <p>Afterwards, I just needed to set the correct configuration settings in the wp-config.php file in order to finally get in the initial startup Wordpress page</p>
+
+                <code class="code">
+                    curl -s https://api.wordpress.org/secret-key/1.1/salt/ <br />
+                    <span class="text-orange-400">sudo</span> nano /var/www/<span class="text-blue-400">your_domain</span>/wp-config.php
+                </code>
+
+                <img alt="wordpress config" src="/public/wpconfig-db.png" class="image" />
+                <img alt="wordpress config" src="/public/wpconfig-salt.png" class="image" />
+
+                <p>However, this is not my initial intention for the documentation as the docs and the todoapp were made in raw HTML. Thus, I needed to find a way to insert these features into Wordpress. Fortunately, I was able to find a <a class="text-red-600" href="https://wordpress.stackexchange.com/questions/296592/how-to-use-custom-html-file-instead-of-wordpress-homepage">guide</a> that helped me do exactly what I needed to do - installing Wordpress in a subdirectory</p>
+
+                <img alt="wordpress general settings" src="/public/wp-url.png" class="image" />
+
+                <p>I only had to follow the official <a class="text-red-600" href="https://wordpress.org/documentation/article/giving-wordpress-its-own-directory/">guide</a> for moving Wordpress into a subdirectory that I made <span class="inline-code">/blog</span></p>
+
+                <img alt="wordpress home page" src="/public/wp-home.png" class="image" />
+
+                <p>From there, I was able to make a simple home page that leads back to the original docs using Wordpress's built in site builder.</p>
+
+            </section>
+
+        </article>
+    </body>
+
+</html>

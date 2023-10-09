@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Todolist | reddie
+        </title>
+        <meta name="description" content="ECE 168 Lab 1 Exercise Todolist by Sean Red Mendoza">
+        <link rel="shortcut icon" type="image/icon" href="/public/favicon.ico" />
+        <link rel="icon" type="image/icon" href="/public/favicon.ico" />
+
+        <!-- Tailwind CSS -->
+        <script src="/js/tailwind.min.js"></script>
+        <style type="text/tailwindcss">
+            @tailwind base;
+            @tailwind components;
+            @tailwind utilities;
+        </style>
+        <style type="text/tailwindcss">
+            @layer components {
+                .code {
+                  @apply rounded-lg block font-mono whitespace-nowrap p-5 my-2 bg-neutral-800;
+                }
+              }
+        </style>
+
+        <!-- HTMX -->
+        <script src="/js/htmx.min.js"></script>
+        <script src="/js/htmx-remove-me.min.js"></script>
+
+    </head>
+
+    <body class="flex flex-col p-5 lg:p-10 text-white scroll-smooth min-h-screen justify-center items-center bg-neutral-900 antialiased font-sans lg:text-lg">
+        <section class="container flex justify-start p-2 lg:max-w-2xl">
+            <a rel="preload" href="/" class="flex space-x-2 hover:text-red-600 hover:bg-transparent bg-red-600 stroke-white items-center justify-center px-3 py-2 cursor-pointer rounded-lg ring-1 ring-red-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="font-bold">Back to home</span>
+
+            </a>
+        </section>
+
+        <section class="container flex flex-col p-2 md:pb-5 lg:max-w-2xl">
+            <div class="flex justify-start space-x-2 items-baseline mb-1">
+                <h1 class="font-bold text-5xl font-sans">Todo List </h1>
+                <span class="font-mono text-lg text-gray-600 font-semibold">Today</span>
+            </div>
+            <img alt="desk" src="/public/todolist.webp" class="rounded-lg shadow-lg w-full h-auto" />
+        </section>
+
+        <main class="container lg:max-w-2xl flex flex-col gap-3 p-2 transition-all ease-in-out min-h-[26rem]" hx-ext="remove-me" id="item-list">
+            <form hx-post="/api/addTodo.php" hx-target="#divider" hx-swap="afterend" class="flex w-full bg-neutral-800 rounded-lg shadow-sm p-5 hover:scale-[1.01] space-x-1 items-center transition-all ease-in-out" hx-on::after-request="this.reset()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                </svg>
+
+                <input name="content" id="content" type="text" class="text-white placeholder:text-slate-500 outline-none border-none active:outline-none active:border-none rounded-sm w-full bg-transparent" placeholder="Add a new item...">
+            </form>
+
+            <div id="divider" class="w-full border border-gray-500 "></div>
+
+            <div class="flex w-full bg-neutral-800 rounded-lg shadow-sm p-5 space-x-1 items-center transition-all ease-in-out" hx-get="/api/listTodos.php" hx-swap="outerHTML" hx-trigger="load, every 1s">
+            </div>
+        </main>
+    </body>
+
+</html>
